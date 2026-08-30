@@ -1,1 +1,226 @@
 {% extends "global/base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32 bg-gradient-to-b from-brand-background to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <!-- Left Text Content -->
+            <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-secondary-light border border-brand-secondary/30 text-brand-secondary font-bold text-sm tracking-wide shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-secondary animate-pulse"></span>
+                    Nova Experiência de Adoção Tech
+                </div>
+
+                <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-brand-primary leading-[1.1]">
+                    Você não escolhe seu melhor amigo. <span class="text-brand-accent underline decoration-brand-secondary decoration-wavy decoration-2">Você encontra.</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-brand-text-muted max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                    Esqueça catálogos frios de abrigos. A PetHub usa tecnologia de afinidade para conectar personalidades únicas a lares cheios de amor, transformando a descoberta em um momento mágico.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#descoberta" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-brand-secondary hover:bg-brand-secondary-hover text-white font-display font-bold text-lg shadow-xl shadow-brand-secondary/15 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+                        Explorar Conexões 🐾
+                    </a>
+                    <button onclick="openModal('match')" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-white hover:bg-brand-primary-light text-brand-primary border-2 border-brand-border font-display font-bold text-lg transition-all shadow-sm">
+                        Fazer Match Rápido
+                    </button>
+                </div>
+
+                <!-- Mini Stats -->
+                <div class="grid grid-cols-3 gap-6 pt-8 border-t border-brand-border/80 max-w-lg mx-auto lg:mx-0">
+                    <div>
+                        <span class="block font-display text-3xl font-bold text-brand-primary">+1.400</span>
+                        <span class="text-sm font-medium text-brand-text-muted">Lares Felizes</span>
+                    </div>
+                    <div>
+                        <span class="block font-display text-3xl font-bold text-brand-secondary">98%</span>
+                        <span class="text-sm font-medium text-brand-text-muted">Compatibilidade</span>
+                    </div>
+                    <div>
+                        <span class="block font-display text-3xl font-bold text-brand-accent">120+</span>
+                        <span class="text-sm font-medium text-brand-text-muted">ONGs Parceiras</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Interactive Visual Card Showcase -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="absolute -top-10 -left-10 w-72 h-72 bg-brand-secondary-light rounded-full filter blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-brand-primary-light rounded-full filter blur-3xl pointer-events-none"></div>
+
+                <!-- Main Dynamic Preview Card -->
+                <div class="w-full max-w-md bg-white rounded-3xl p-6 card-shadow border border-brand-border relative z-10 card-shadow-hover">
+                    <div class="relative h-80 rounded-2xl overflow-hidden mb-5 bg-brand-primary-light">
+                        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=800" alt="Cachorro contente olhando para cima" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-brand-primary flex items-center gap-1.5 shadow-sm">
+                            <span>⚡ 96% Match</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4 bg-brand-primary/85 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-white">
+                            🐶 Filhote • Energético • Carinhoso
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-display text-2xl font-bold text-brand-primary">Bento, 8 meses</h3>
+                            <span class="text-sm font-bold text-brand-secondary px-3 py-1 bg-brand-secondary-light rounded-xl">Porte Médio</span>
+                        </div>
+                        <p class="text-brand-text-muted text-sm leading-relaxed">
+                            "Adora correr no parque, especialista em dar tapinhas com a pata e muito curioso com borboletas."
+                        </p>
+
+                        <div class="pt-4 flex items-center gap-3">
+                            <button onclick="likePet('Bento')" class="flex-1 py-3.5 bg-brand-accent hover:bg-brand-accent-hover text-white rounded-xl font-display font-bold text-center shadow-md shadow-brand-accent/20 transition-all active:scale-95 flex items-center justify-center gap-2">
+                                <span>❤️ Quero Conhecer</span>
+                            </button>
+                            <button onclick="nextPreviewPet()" class="p-3.5 bg-brand-primary-light hover:bg-brand-primary text-brand-primary hover:text-white rounded-xl transition-all">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Brand Pillars Section -->
+<section id="experiencia" class="py-20 bg-white border-y border-brand-border/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-brand-secondary font-bold uppercase tracking-wider text-sm">DNA PetHub</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-brand-primary">Criado para repensar a conexão humana e animal</h2>
+            <p class="text-brand-text-muted text-lg">Nossa identidade visual e arquitetura de produto foram desenhadas com foco em acolhimento e personalidade.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Pillar 1 -->
+            <div class="bg-brand-background p-8 rounded-3xl border border-brand-border card-shadow-hover space-y-4">
+                <div class="w-14 h-14 rounded-2xl bg-brand-primary text-white flex items-center justify-center text-2xl shadow-md">
+                    ✨
+                </div>
+                <h3 class="font-display text-xl font-bold text-brand-primary">Descoberta Orgânica</h3>
+                <p class="text-brand-text-muted text-sm leading-relaxed">
+                    Aproximamos adotantes de pets através de compatibilidade de estilo de vida, eliminando burocracias e barreiras visuais tradicionais.
+                </p>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="bg-brand-background p-8 rounded-3xl border border-brand-border card-shadow-hover space-y-4">
+                <div class="w-14 h-14 rounded-2xl bg-brand-secondary text-white flex items-center justify-center text-2xl shadow-md">
+                    🛡️
+                </div>
+                <h3 class="font-display text-xl font-bold text-brand-primary">Adoção Responsável</h3>
+                <p class="text-brand-text-muted text-sm leading-relaxed">
+                    Parceria direta com abrigos certificados, garantindo suporte veterinário completo, vacinação em dia e triagem segura.
+                </p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="bg-brand-background p-8 rounded-3xl border border-brand-border card-shadow-hover space-y-4">
+                <div class="w-14 h-14 rounded-2xl bg-brand-accent text-white flex items-center justify-center text-2xl shadow-md">
+                    ❤️
+                </div>
+                <h3 class="font-display text-xl font-bold text-brand-primary">Personalidade Real</h3>
+                <p class="text-brand-text-muted text-sm leading-relaxed">
+                    Cada animal ganha destaque por suas manias, nível de energia e carinho, valorizando a individualidade de cada ser vivo.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Discovery Grid Section -->
+<section id="descoberta" class="py-20 bg-brand-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <span class="text-brand-secondary font-bold uppercase tracking-wider text-sm">Exploração Instantânea</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-brand-primary mt-1">Conheça alguns amigos aguardando um lar</h2>
+            </div>
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap gap-2 bg-white p-1.5 rounded-2xl border border-brand-border shadow-sm">
+                <button onclick="filterPets('all')" class="px-4 py-2 rounded-xl font-semibold text-sm bg-brand-primary text-white transition-all filter-btn" data-category="all">Todos</button>
+                <button onclick="filterPets('dogs')" class="px-4 py-2 rounded-xl font-semibold text-sm text-brand-text-muted hover:text-brand-primary transition-all filter-btn" data-category="dogs">Cachorros</button>
+                <button onclick="filterPets('cats')" class="px-4 py-2 rounded-xl font-semibold text-sm text-brand-text-muted hover:text-brand-primary transition-all filter-btn" data-category="cats">Gatos</button>
+            </div>
+        </div>
+
+        <!-- Pet Cards Grid -->
+        <div id="pets-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-brand-border card-shadow-hover pet-card" data-type="dogs">
+                <div class="relative h-72 bg-brand-primary-light">
+                    <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&q=80&w=800" alt="Cachorro correndo" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brand-primary shadow-sm">
+                        ⭐ 94% Compatível
+                    </div>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-display text-2xl font-bold text-brand-primary">Amora</h3>
+                        <span class="text-sm font-semibold text-brand-secondary bg-brand-secondary-light px-3 py-1 rounded-lg">2 anos • Fêmea</span>
+                    </div>
+                    <p class="text-brand-text-muted text-sm leading-relaxed">
+                        Extremamente dócil, adora cochilar no sofá e passear no fim da tarde. Vacinada e castrada.
+                    </p>
+                    <button onclick="openAdoptModal('Amora')" class="w-full py-3 bg-brand-primary hover:bg-brand-primary-hover text-white rounded-xl font-display font-bold transition-all shadow-md shadow-brand-primary/10">
+                        Adotar Amora
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-brand-border card-shadow-hover pet-card" data-type="cats">
+                <div class="relative h-72 bg-brand-primary-light">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=800" alt="Gato fofo" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brand-primary shadow-sm">
+                        ⭐ 91% Compatível
+                    </div>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-display text-2xl font-bold text-brand-primary">Simba</h3>
+                        <span class="text-sm font-semibold text-brand-secondary bg-brand-secondary-light px-3 py-1 rounded-lg">1 ano • Macho</span>
+                    </div>
+                    <p class="text-brand-text-muted text-sm leading-relaxed">
+                        Mestre em ronronar alto e caçar raios de sol na sala. Muito curioso e independente.
+                    </p>
+                    <button onclick="openAdoptModal('Simba')" class="w-full py-3 bg-brand-primary hover:bg-brand-primary-hover text-white rounded-xl font-display font-bold transition-all shadow-md shadow-brand-primary/10">
+                        Adotar Simba
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-brand-border card-shadow-hover pet-card" data-type="dogs">
+                <div class="relative h-72 bg-brand-primary-light">
+                    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&q=80&w=800" alt="Cachorro sorrindo" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brand-primary shadow-sm">
+                        ⭐ 98% Compatível
+                    </div>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-display text-2xl font-bold text-brand-primary">Pipoca</h3>
+                        <span class="text-sm font-semibold text-brand-secondary bg-brand-secondary-light px-3 py-1 rounded-lg">3 anos • Fêmea</span>
+                    </div>
+                    <p class="text-brand-text-muted text-sm leading-relaxed">
+                        Cheia de energia, adora brincar de buscar bolinha e se dá super bem com outros animais.
+                    </p>
+                    <button onclick="openAdoptModal('Pipoca')" class="w-full py-3 bg-brand-primary hover:bg-brand-primary-hover text-white rounded-xl font-display font-bold transition-all shadow-md shadow-brand-primary/10">
+                        Adotar Pipoca
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
