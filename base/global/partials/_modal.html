@@ -1,0 +1,12 @@
+<div id="app-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm hidden">
+    <div
+        class="bg-white w-full max-w-lg rounded-3xl p-8 card-shadow border border-brand-border relative animate-in fade-in zoom-in duration-200">
+        <button onclick="closeModal()"
+            class="absolute top-6 right-6 w-10 h-10 rounded-full bg-brand-primary-light flex items-center justify-center text-brand-primary font-bold hover:bg-brand-primary hover:text-white transition-all">
+            ✕
+        </button>
+        <div id="modal-content" class="space-y-6">
+            <!-- Conteúdo dinâmico injetado via JavaScript -->
+        </div>
+    </div>
+</div>

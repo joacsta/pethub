@@ -27,7 +27,7 @@ class Pet(models.Model):
         User, on_delete=models.CASCADE, related_name="pet_doados"
     )
     nome = models.CharField(max_length=100)
-    especie = models.CharField(max_length=5, choices=Especie.choices)
+    # especie = models.CharField(max_length=5, choices=Especie.choices)
     raca = models.CharField(max_length=5, blank=True)
     idade = models.PositiveIntegerField(null=True, blank=True)
     porte = models.CharField(max_length=1, choices=Porte.choices)
@@ -49,18 +49,18 @@ class Pet(models.Model):
         return self.nome
 
 
-class FotoPet(models.Model):
-    pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name="pedidos")
-    interessado = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="pedidos feitos"
-    )
-    status = models.CharField(
-        max_length=10, choices=Status.choices, default=Status.DISPONIVEL
-    )
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ("pet", "interessado")
-
-    def __str__(self):
-        return f"{self.interessado} -> {self.pet} ({self.status})"
+# class FotoPet(models.Model):
+#     pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name="pedidos")
+#     interessado = models.ForeignKey(
+#         User, on_delete=models.CASCADE, related_name="pedidos feitos"
+#     )
+#     status = models.CharField(
+#         max_length=10, choices=Status.choices, default=Status.DISPONIVEL
+#     )
+#     created_at = models.DateTimeField(auto_now_add=True)
+#
+#     class Meta:
+#         unique_together = ("pet", "interessado")
+#
+#     def __str__(self):
+#         return f"{self.interessado} -> {self.pet} ({self.status})"

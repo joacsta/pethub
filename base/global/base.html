@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}PetHub{% endblock title %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script>
+         tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#335C67',
+                            'primary-hover': '#244149',
+                            'primary-light': '#E6EEF0',
+                            secondary: '#E09F3E',
+                            'secondary-hover': '#c98a31',
+                            'secondary-light': '#FDF6EB',
+                            accent: '#9E2A2B',
+                            'accent-hover': '#7E2122',
+                            'accent-light': '#F9E8E8',
+                            background: '#FDFBF7',
+                            'background-card': '#FFFFFF',
+                            'text-main': '#1E353C',
+                            'text-muted': '#5A7880',
+                            border: '#E5E0D8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    {% load static %}
+    <link rel="stylesheet" type="" href="{% static 'css/pethub.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="bg-brand-background min-h-screen text-brand-text-main flex flex-col selection:bg-brand-secondary selection:text-white">
+  <!-- Header Parcial -->
+    {% include 'global/partials/_header.html' %}
+
+    <!-- Conteúdo Específico de cada Página -->
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Modal Parcial -->
+    {% include 'global/partials/_modal.html' %}
+
+    <!-- Footer Parcial -->
+    {% include 'global/partials/_footer.html' %}
+
+    <!-- JavaScript Customizado -->
+    <script src="{% static 'js/pethub.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>
